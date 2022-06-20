@@ -1,0 +1,46 @@
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+</head>
+<body>
+    <h1>JSONでデータ</h1>
+
+    <form action="#" th:action="@{/input}" th:method="post" th:object="${dateEntity}">
+    <p>Url: <input type="text" id="url" name="url" size="100" value="https://example.com/api/hoge"></p>
+    <p>Method: <input type="text" id="method" name="method" size="10" value="post"></p>
+    <p>Parameter:</p>
+    <div id="input-param">
+        <p>作業内容１</p>
+        <p><input type="text" size="30" ></p>
+        <p>詳細</p>
+        <p> <textarea rows="10" cols="60" name="requestText"></textarea></p>
+        
+        <template id="input-template">
+            <div id="edit_area"></div>
+            <p><input type="text" size="30" ></p>
+            <p>詳細</p>
+            <p> <textarea rows="10" cols="60" name="requestText"></textarea></p>
+        </template>
+        </div>
+        <p><button id="add" type="button">add</button></p>
+        <input type="submit" value="submit"><br>
+         </form>
+    
+
+
+    <textarea id="response" cols=120 rows=10 disabled>Response Values</textarea>
+</body>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        var index = 2;
+        $("#add").click(function () {
+            document.getElementById('edit_area').innerHTML = "作業内容" + index;
+            let clone = document.importNode(document.querySelector('#input-template').content, true);
+            
+            document.querySelector('#input-param').append(clone);
+            
+            index ++;
+        });
+    }); 
+</script>    
+</html>
